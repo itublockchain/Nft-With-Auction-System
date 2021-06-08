@@ -1,27 +1,24 @@
 import {Component} from "react";
 import * as Backend from "../../build/index.main.mjs";
-import * as Reach from "@reach-sh/stdlib/ALGO";
 import { Context } from "../../Context";
 import CreatorViews from "./CreatorViews";
+import {loadStdlib} from '@reach-sh/stdlib';
+const Reach = loadStdlib('ALGO');
 
 export class Creator extends Component  {
     static contextType = Context;
 
     constructor(props) {
         super(props);
-
         this.state = {
             appState: "",
             args: [],
             resIsAuctionOn: null,
-            
         }
         this.isAuctionOnExt = this.isAuctionOnExt.bind(this);
     }
-
     componentDidMount() {
         const[, , , , , , ctc, , ctcArgs, ,] = this.context;
-
         this.interval = setInterval(async () => await this.updateBalance(), 5000);        
 
         this.getId = ctcArgs[0].getId;
@@ -33,37 +30,29 @@ export class Creator extends Component  {
 
     async updateBalance() {        
         const [account, , , setBalance] = this.context;
-
         const balance = Reach.formatCurrency(await Reach.balanceOf(account), 4);
         setBalance(balance);
     }
     async informTimeout() {
-        console.log("informTimeout");
-
         this.setState({
             appState: "informTimeout",
         });
     }
 
-    async showBid(nftViewAddress, bid, address) {
-        console.log("showBid");
-
+    async showBid(getId, nftViewAddress, bid, address) {
         const addressFormat = Reach.formatAddress(address);
-        const bidFormat = Reach.formatCurrency(bid, 4);
-        
+        const bidFormat = Reach.formatCurrency(bid, 4);        
         this.setState({
             appState: "showBid",
-            args: [nftViewAddress, bidFormat ,addressFormat],
+            args: [getId ,nftViewAddress, bidFormat ,addressFormat],
         })
     }
 
-    async isAuctionOn(nftViewAddress) {
-        console.log("isAuctionOn");
-
+    async isAuctionOn(getId, nftViewAddress) {
         const response = await new Promise (res => {
             this.setState({
                 appState: "isAuctionOn",
-                args: [nftViewAddress],
+                args: [getId, nftViewAddress],
                 resIsAuctionOn: res,
             })
         });
@@ -74,22 +63,17 @@ export class Creator extends Component  {
         this.state.resIsAuctionOn(res);
     }
 
-    async seeOutcome(nftViewAddress, address) {
-        console.log("seeOutcome");
-
+    async seeOutcome(getId, nftViewAddress, address) {
         const addressFormat = Reach.formatAddress(address);
         this.setState({
             appState: "seeOutcome",
-            args: [nftViewAddress, addressFormat],
-            
+            args: [getId, nftViewAddress, addressFormat],
         })
     }
-
     render() {
         return <CreatorViews
             appState={this.state.appState}
-            args={this.state.args}
-            
+            args={this.state.args}            
             isAuctionOnReady={this.state.resIsAuctionOn !== null}
             isAuctionOn={this.isAuctionOnExt}
         />
