@@ -9,12 +9,12 @@ const CreatorViews = ({appState, args, isAuctionOnReady, isAuctionOn}) => {
         case "informTimeout":
             return (<InformTimeout />);
         case "seeOutcome":
-            return (<SeeOutcome nftViewAddress={args[0]} address={args[1]}  />);
+            return (<SeeOutcome getId ={args[0]} nftViewAddress={args[1]} address={args[2]}  />);
         case "showBid":
-            return <ShowBid nftViewAddress={args[0]} getBid={args[1]} address={args[2]}/>; 
+            return <ShowBid getId ={args[0]}  nftViewAddress={args[1]} getBid={args[2]} address={args[3]}/>; 
         case "isAuctionOn":
             return(isAuctionOnReady
-                ? <IsAuctionOn nftViewAddress={args[0]} isAuctionOn={isAuctionOn}/>
+                ? <IsAuctionOn getId ={args[0]}  nftViewAddress={args[1]} isAuctionOn={isAuctionOn}/>
                 :  <Container style={{
                     display: "grid",
                     backgroundColor: "white",
