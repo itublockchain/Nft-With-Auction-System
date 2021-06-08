@@ -1,24 +1,24 @@
 import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
-import * as Reach from "@reach-sh/stdlib/ALGO";
+import {loadStdlib} from '@reach-sh/stdlib';
 import Algorand from "../../assets/algorand.png";
 import { Context } from "../../Context";
+const Reach = loadStdlib('ALGO');
 
 const ConnectWallet = () => {
     const [account, setAccount, , setBalance] = useContext(Context);
 
-    const connectWallet = async () => {
+    const connectWallet = async () => {        
+        Reach.setSignStrategy('AlgoSigner');
+        Reach.setProviderByName('TestNet');
         const acc = await Reach.getDefaultAccount();
         //const amount = Reach.parseCurrency(10);
         //await Reach.fundFromFaucet(acc, amount);
         const balAtomic = await Reach.balanceOf(acc);
         const bal = Reach.formatCurrency(balAtomic, 4);
-
         setAccount(Object.assign({}, acc));
-
         setBalance(bal);
     }
-
     const buttonStyle = {
         bottom: "2em",
         right: "2em",
