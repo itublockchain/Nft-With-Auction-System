@@ -14,22 +14,18 @@ export const DeployButton = ({ ctcArgs }) => {
 
     const deploy = async () => {
         setShow(true);
-
         const ctc = account.deploy(Backend);
-
         setCtc([ctc]);
-
         setCtcArgs(ctcArgs);
-
         const ctcInfo = JSON.stringify(await ctc.getInfo(), null, 2);
         setCtcInfo([ctcInfo]);
-
         history.push('/deploy');
     }
-
     return (
         <>
-            <Button variant="success" onClick={deploy}>Deploy</Button>
+            <Button variant="success" onClick={deploy}>
+                Deploy
+            </Button>
             <DeployModal show={show} />
         </>
     );
@@ -39,23 +35,20 @@ export const AttachButton = () => {
     const [account, , , , , , , setCtc] = useContext(Context);
     const [show, setShow] = useState(false);
     const history = useHistory();
-
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-
     const attach = async (ctcInfo) => {
         const ctc = await account.attach(Backend, JSON.parse(ctcInfo));
-
         setCtc([ctc]);
-
         console.log("Attached to the contract");
-
         history.push("/app/bidder");
     }
 
     return (
         <>
-            <Button variant="danger" onClick={handleShow}>Attach</Button>
+            <Button variant="danger" onClick={handleShow}>
+                Attach
+            </Button>
             <AttachModal
                 show={show}
                 handleClose={handleClose}
@@ -69,7 +62,6 @@ const AttachModal = ({ show, handleClose, attach }) => {
         const info = document.querySelector("#ctcArea").value;
         attach(info);
     }
-
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
