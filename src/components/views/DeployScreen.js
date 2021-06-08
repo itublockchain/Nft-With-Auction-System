@@ -1,11 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-
-
 import { Context } from "../../Context";
 
 const DeployScreen = () => {
@@ -23,9 +20,7 @@ const DeployScreen = () => {
         history.push("/app/creator")}
     const handleCopy = () => { setCopied(true) }
 
-    return (
-        
-        
+    return (        
         <Container style={{
             display: "grid",
             backgroundColor: "white",
@@ -33,14 +28,11 @@ const DeployScreen = () => {
             borderRadius: "0.3rem",
             padding: "2rem",
         }} className="mt-3 text-left">
-            <h2>Contract Details: </h2>
-            
+            <h2>Contract Details: </h2>            
             <div style={{textAlign:"center"}}>
-            <img alt= "NFT" src={image} style={{borderRadius: "0.3rem", border: "3px solid #000", width: '300px'}} />                                
-            <hr></hr>                               
-            </div>
-            
-            
+                <img alt= "NFT" src={image} style={{borderRadius: "0.3rem", border: "3px solid #000", width: '300px'}} />            
+                <hr></hr>                               
+            </div>            
             <pre className="mt-4 p-4" style={preStyle}>
                 {ctcInfo}
             </pre>
@@ -56,8 +48,7 @@ const DeployScreen = () => {
                 onClick={handleProceed}>
                 Proceed to Application                
             </Button>
-        </Container>
-        
+        </Container>        
     );
 }
 
