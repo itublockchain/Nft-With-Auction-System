@@ -2,9 +2,9 @@
 
 Node.js must be installed in your system. 
 
-After cloning the project with $ git clone https://github.com/aalimsahin/NFT-With-Auction-System.git
+After cloning the project with $ git clone https://github.com/itublockchain/Nft-With-Auction-System.git
 
-$ cd NFT-With-Auction-System
+$ cd Nft-With-Auction-System
 
 use $ npm install package.json to install dependencies
 
