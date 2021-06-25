@@ -19,3 +19,5 @@ After that running $ REACH_CONNECTOR_MODE=ALGO ./reach devnet (which runs the AL
 go to the parent directory and start the React app $ cd .. ; npm run start
 
 This will run the web-app in the localhost:3000
+
+You can watch our demo video: https://www.youtube.com/watch?v=xj4IH8kg7Bw
