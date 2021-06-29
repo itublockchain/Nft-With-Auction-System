@@ -1,27 +1,24 @@
 'reach 0.1';
 'use strict';
 
-const deneme= Bytes(150);
-
-
 export const main =
   Reach.App(
     {},
     [Participant('Creator', {
       getId: UInt,      
       deadline: UInt,
-      nftViewAddress: deneme,
-      isAuctionOn: Fun([deneme], Bool),
+      nftViewAddress: Bytes(150),
+      isAuctionOn: Fun([Bytes(150)], Bool),
       informTimeout: Fun([], Null),
-      seeOutcome: Fun([deneme, Address], Null),
-      showBid: Fun([deneme, UInt, Address], Null),
+      seeOutcome: Fun([Bytes(150), Address], Null),
+      showBid: Fun([Bytes(150), UInt, Address], Null),
     }),
       ParticipantClass('Bidder', {
-        isAuctionOn: Fun([deneme], Bool),
+        isAuctionOn: Fun([Bytes(150)], Bool),
         informTimeout: Fun([], Null),
-        seeOutcome: Fun([deneme, Address], Null),
-        getBid: Fun([deneme], UInt),
-        showBid: Fun([deneme, UInt, Address], Null),
+        seeOutcome: Fun([Bytes(150), Address], Null),
+        getBid: Fun([Bytes(150)], UInt),
+        showBid: Fun([Bytes(150), UInt, Address], Null),
       }),
       View('NFT', {
         owner: Address,
